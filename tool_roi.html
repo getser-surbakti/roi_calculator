@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musk ROI Calculator</title>
+    <title>Kalkulator ROI Musk</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -29,10 +29,11 @@
         }
         h1 {
             font-size: 32px;
-            color: #e74c3c;
+            color: white;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 900;
             margin-bottom: 10px;
         }
         .description {
@@ -41,7 +42,7 @@
             color: #bdc3c7;
             margin-bottom: 15px;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.05);
+            background: #186B61;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -51,12 +52,14 @@
             text-align: center;
             margin-bottom: 25px;
             font-style: italic;
+            line-height: 1.8;
         }
         .formulas span {
             background: rgba(255, 255, 255, 0.1);
             padding: 4px 10px;
             border-radius: 5px;
             margin: 0 5px;
+            display: inline-block;
         }
         .input-group {
             margin: 20px 0;
@@ -86,7 +89,7 @@
         button {
             width: 100%;
             padding: 12px;
-            background: #e74c3c;
+            background: #186B61;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -148,34 +151,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>Musk ROI Calculator</h1>
+        <h1>HITUNG ROI INVESTASIMU</h1>
         <div class="description">
-            Unleash the power of your investments. Calculate ROI like a visionary—fast, bold, and futuristic.
+            Bebaskan kekuatan investasi Anda. Hitung ROI dengan cara visioner—cepat, berani, dan futuristik.
         </div>
         <div class="formulas">
-            Formulas: 
-            <span>ROI = ((Final Value - Initial Investment) / Initial Investment) × 100%</span> | 
-            <span>Annual ROI = (((Final Value / Initial Investment) ^ (1 / Years)) - 1) × 100%</span>
+            Rumus Inti:<br>
+            <span>ROI Total = ((Nilai Akhir - Investasi Awal) / Investasi Awal) × 100%</span><br>
+            <span>ROI Tahunan = (((Nilai Akhir / Investasi Awal) ^ (1 / Tahun)) - 1) × 100%</span>
         </div>
         <div class="input-group">
-            <label for="initial">Initial Investment (Rp):</label>
-            <input type="number" id="initial" placeholder="Enter your starting capital">
+            <label for="initial">Investasi Awal (Rp):</label>
+            <input type="number" id="initial" placeholder="Masukkan modal awal Anda">
         </div>
         <div class="input-group">
-            <label for="final">Final Value (Rp):</label>
-            <input type="number" id="final" placeholder="Enter your ending value">
+            <label for="final">Nilai Akhir (Rp):</label>
+            <input type="number" id="final" placeholder="Masukkan nilai akhir Anda">
         </div>
         <div class="input-group">
-            <label for="years">Time Period (Years):</label>
-            <input type="number" id="years" placeholder="Enter investment duration" step="0.1">
+            <label for="years">Periode Waktu (Tahun):</label>
+            <input type="number" id="years" placeholder="Masukkan durasi investasi" step="0.1">
         </div>
-        <button onclick="calculateROI()">Compute ROI</button>
+        <button onclick="calculateROI()">Hitung ROI</button>
         <div id="result"></div>
         <div id="chartContainer">
             <canvas id="roiChart"></canvas>
         </div>
         <div id="history">
-            <h3>Calculation History</h3>
+            <h3>Riwayat Perhitungan</h3>
             <ul id="historyList"></ul>
         </div>
     </div>
@@ -193,7 +196,7 @@
             historyList.innerHTML = '';
             history.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = `${item.date}: ${formatRupiah(item.initial)} → ${formatRupiah(item.final)} (ROI: ${item.roi}%, Annual: ${item.annualRoi}%)`;
+                li.textContent = `${item.date}: ${formatRupiah(item.initial)} → ${formatRupiah(item.final)} (ROI: ${item.roi}%, Tahunan: ${item.annualRoi}%)`;
                 historyList.appendChild(li);
             });
         }
@@ -218,7 +221,7 @@
             const resultDiv = document.getElementById('result');
 
             if (isNaN(initial) || isNaN(final) || isNaN(years) || years <= 0) {
-                resultDiv.textContent = "Invalid input detected. Try harder.";
+                resultDiv.textContent = "Input tidak valid terdeteksi. Coba lebih keras.";
                 resultDiv.style.display = 'block';
                 resultDiv.className = 'negative';
                 return;
@@ -228,7 +231,7 @@
             const annualRoi = (((final / initial) ** (1 / years) - 1) * 100).toFixed(2);
 
             resultDiv.style.display = 'block';
-            resultDiv.textContent = `Total ROI: ${roi}% | Annual ROI: ${annualRoi}%`;
+            resultDiv.textContent = `ROI Total: ${roi}% | ROI Tahunan: ${annualRoi}%`;
             resultDiv.className = roi >= 0 ? 'positive' : 'negative';
 
             saveToHistory(initial, final, roi, annualRoi);
@@ -242,9 +245,9 @@
             chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Initial', 'Final'],
+                    labels: ['Awal', 'Akhir'],
                     datasets: [{
-                        label: 'Value (Rp)',
+                        label: 'Nilai (Rp)',
                         data: [initial, final],
                         backgroundColor: [initial <= final ? '#2ecc71' : '#e74c3c', final >= initial ? '#2ecc71' : '#e74c3c'],
                         borderColor: '#ecf0f1',
