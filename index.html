@@ -9,7 +9,6 @@
     <style>
         body {
             font-family: 'Orbitron', sans-serif;
-            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             background: linear-gradient(135deg, #1a1a1a, #2c3e50);
@@ -24,6 +23,10 @@
             box-shadow: 0 0 30px rgba(231, 76, 60, 0.2);
             border: 2px solid #e74c3c;
             animation: fadeIn 1s ease-in-out;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         @keyframes fadeIn {
@@ -159,6 +162,12 @@
             border-radius: 10px;
             border: 1px solid #3498db;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        #roiChart {
+            width: 100%;
+            height: auto;
         }
 
         #history {
@@ -192,6 +201,134 @@
         #history li:hover {
             color: #f1c40f;
             background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Media Queries untuk Responsivitas */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+
+            .description {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .formulas {
+                font-size: 12px;
+                line-height: 1.8;
+            }
+
+            .formulas span {
+                padding: 4px 8px;
+                margin: 4px;
+                display: block; /* Stack formulas vertikal di layar kecil */
+            }
+
+            .input-group {
+                margin: 20px 0;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            #result {
+                font-size: 18px;
+                padding: 15px;
+            }
+
+            #chartContainer {
+                padding: 15px;
+            }
+
+            #history {
+                padding: 15px;
+            }
+
+            #history h3 {
+                font-size: 16px;
+            }
+
+            #history li {
+                font-size: 14px;
+                padding: 8px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .description {
+                font-size: 12px;
+            }
+
+            .formulas {
+                font-size: 10px;
+            }
+
+            .formulas span {
+                padding: 3px 6px;
+            }
+
+            label {
+                font-size: 12px;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            #result {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            #chartContainer {
+                padding: 10px;
+            }
+
+            #history {
+                padding: 10px;
+            }
+
+            #history h3 {
+                font-size: 14px;
+            }
+
+            #history li {
+                font-size: 12px;
+                padding: 6px 0;
+            }
         }
     </style>
 </head>
@@ -301,6 +438,8 @@
                     }]
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
                     scales: {
                         y: {
                             beginAtZero: true,
